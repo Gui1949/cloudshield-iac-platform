@@ -1,0 +1,33 @@
+{
+  "name": "@cloudshield/cloudshield-iac-platform",
+  "version": "1.0.0",
+  "description": "CloudShield IaC Platform — Enterprise Infrastructure as Code, Policy-as-Code & Drift Orchestration Engine",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/tests/domain.test.js",
+    "test:all": "npm run build && npm test",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "cloud-engineering",
+    "platform-engineering",
+    "infrastructure-as-code",
+    "terraform",
+    "kubernetes",
+    "policy-as-code",
+    "cis-benchmarks",
+    "finops",
+    "clean-architecture",
+    "ddd",
+    "typescript",
+    "native-test-runner"
+  ],
+  "author": "Guilherme Santiago Floriano",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}
