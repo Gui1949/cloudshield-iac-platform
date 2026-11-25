@@ -1,12 +1,12 @@
 {
   "name": "@cloudshield/cloudshield-iac-platform",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CloudShield IaC Platform — Enterprise Infrastructure as Code, Policy-as-Code & Drift Orchestration Engine",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "node --test dist/tests/domain.test.js",
+    "test": "node --test dist/tests/domain.test.js dist/tests/application/persistence-acid-locking.test.js",
     "test:all": "npm run build && npm test",
     "start": "node dist/index.js"
   },

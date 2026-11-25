@@ -1,8 +1,8 @@
 # 🛡️ CloudShield IaC Platform
 
 [![CI/CD Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Tests](https://img.shields.io/badge/tests-23%2F23%20passed-success.svg)]()
-[![Release](https://img.shields.io/badge/release-v1.0.0-blue.svg)]()
+[![Tests](https://img.shields.io/badge/tests-33%2F33%20passed-success.svg)]()
+[![Release](https://img.shields.io/badge/release-v1.1.0-blue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-green.svg)]()
 [![Architecture](https://img.shields.io/badge/architecture-Clean%20Arch%20%26%20DDD-orange.svg)]()
 [![Security](https://img.shields.io/badge/compliance-CIS%20Benchmarks%20%26%20FinOps-purple.svg)]()
@@ -46,13 +46,16 @@ O **CloudShield IaC Platform** implementa um motor de governança declarativa ba
 | **RN-03** | **Canonical Cloud URN** | Recursos indexados por URNs padronizados com validação estrita de provedor (`aws`, `gcp`, `azure`, `k8s`). |
 | **RN-04** | **CIS Security Enforcement** | Bloqueio de portas restritas (22, 3389, 5432, 9092) para `0.0.0.0/0` e obrigatoriedade de KMS em armazenamento. |
 | **RN-05** | **Finite State Machine (FSM)** | Transições de estado determinísticas com rastreabilidade auditável e emissão de eventos de domínio. |
+| **RN-06** | **Unit of Work & Rollback Atômico** | Isolamento transacional com rollback total em memória caso qualquer etapa falhe, sem registros parciais. |
+| **RN-07** | **Lock Manager Anti-Deadlock** | Aquisição atômica de locks com ordenação lexicográfica estrita em operações multi-stack prevenindo deadlocks. |
+| **RN-08** | **Versionamento & Snapshots Imutáveis** | Histórico append-only de snapshots com incremento sequencial de versão e controle de concorrência otimista. |
 
 ---
 
 ## 📅 Roadmap Evolutivo (Sprint 06)
 
 - [x] **Fase 1 (Kickoff & Domínio v1.0.0):** Modelagem DDD, Value Objects `CidrBlock`, `CloudResourceUrn`, `FinOpsBudget`, `SecurityRule`, Agregado `InfrastructureStack`, FSM e 23 testes unitários (100% pass).
-- [ ] **Fase 2 (Persistência ACID & State Locking v1.1.0):** Repositório de estado com snapshot, Lock Manager distribuído anti-concorrência de apply e Unit of Work.
+- [x] **Fase 2 (Persistência ACID & State Locking v1.1.0):** Repositório de estado com snapshot, Lock Manager distribuído anti-concorrência de apply, Unit of Work com rollback atômico e 33 testes (100% pass).
 - [ ] **Fase 3 (Mensageria & Drift Detection Relay v1.2.0):** Transactional Outbox, webhooks criptográficos HMAC para alertas de drift e integração com brokers de eventos.
 - [ ] **Fase 4 (Cockpit Operacional & Telemetria v1.3.0):** Telemetry Collector, histogramas de latência de provisionamento, health probes liveness/readiness e console executivo.
 - [ ] **Fase 5 (Hardening, Benchmark & Chaos v1.4.0):** Benchmark de alta vazão ($\ge 5.000$ ops/s), injeção de caos em I/O e release estabilizada.

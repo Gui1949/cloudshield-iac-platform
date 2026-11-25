@@ -19,3 +19,21 @@ export * from './domain/events/DomainEvent.js';
 export * from './domain/events/StackStateChangedEvent.js';
 export * from './domain/events/PolicyViolationDetectedEvent.js';
 export * from './domain/events/BudgetThresholdAlertEvent.js';
+
+// Application Errors
+export * from './application/errors/application-errors.js';
+
+// Application Ports
+export * from './application/ports/repositories/IInfrastructureStackRepository.js';
+export * from './application/ports/concurrency/IStateLockManager.js';
+export * from './application/ports/unit-of-work/IUnitOfWork.js';
+
+// Infrastructure
+export * from './infrastructure/concurrency/AsyncStateLockManager.js';
+export * from './infrastructure/persistence/in-memory/InMemoryInfrastructureStackRepository.js';
+export * from './infrastructure/persistence/in-memory/InMemoryUnitOfWork.js';
+
+// Use Cases
+export * from './application/use-cases/provisionar-stack/ProvisionarStackUseCase.js';
+export * from './application/use-cases/adicionar-recurso-stack/AdicionarRecursoStackUseCase.js';
+export * from './application/use-cases/rollback-stack/RollbackStackUseCase.js';

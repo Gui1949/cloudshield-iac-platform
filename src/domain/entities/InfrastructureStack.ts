@@ -17,6 +17,7 @@ export interface InfrastructureStackProps {
   environment: 'dev' | 'staging' | 'prod';
   budget: FinOpsBudget;
   initialState?: StackState;
+  version?: number;
 }
 
 export class InfrastructureStack {
@@ -36,6 +37,7 @@ export class InfrastructureStack {
   private readonly _environment: 'dev' | 'staging' | 'prod';
   private _state: StackState;
   private _budget: FinOpsBudget;
+  private _version: number;
   private readonly _resources: Map<string, CloudResource> = new Map();
   private readonly _domainEvents: DomainEvent[] = [];
 
@@ -45,6 +47,7 @@ export class InfrastructureStack {
     this._environment = props.environment;
     this._budget = props.budget;
     this._state = props.initialState ?? 'DRAFT';
+    this._version = props.version ?? 1;
   }
 
   public static create(props: InfrastructureStackProps): InfrastructureStack {
@@ -71,6 +74,18 @@ export class InfrastructureStack {
 
   public get state(): StackState {
     return this._state;
+  }
+
+  public get version(): number {
+    return this._version;
+  }
+
+  public incrementVersion(): void {
+    this._version++;
+  }
+
+  public setVersion(v: number): void {
+    this._version = v;
   }
 
   public get budget(): FinOpsBudget {
@@ -166,5 +181,22 @@ export class InfrastructureStack {
       total += r.monthlyCostCents;
     }
     return total;
+  }
+
+  public clone(): InfrastructureStack {
+    const cloned = new InfrastructureStack({
+      id: this._id,
+      name: this._name,
+      environment: this._environment,
+      budget: this._budget,
+      initialState: this._state,
+      version: this._version
+    });
+
+    for (const res of this._resources.values()) {
+      cloned._resources.set(res.urn.value, res);
+    }
+
+    return cloned;
   }
 }
